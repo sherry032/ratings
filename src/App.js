@@ -1,23 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Block from "./components/Block";
+
 
 function App() {
+  const ratings = ["fantastic", "good", "bad", "very good", "wonderful"]
+  const [clicked, setClicked] = useState(null)
+  const changeColorHanlder = (i)=>{
+    setClicked(i)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      {ratings.map((_, i) => <Block key={i} index={i} clicked={clicked} colorHanlder={changeColorHanlder.bind(null, i)}/>)}
     </div>
   );
 }
